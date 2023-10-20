@@ -7,13 +7,10 @@ phases:
   pre_build:
     commands:
       - cd my_first_app_angular
-      - echo install node modules
       - npm install
   build:
     commands:
-      - echo Build the project
       - npm run build
-      - echo Finished the build project
 artifacts:
   files:
     - '**/*'
