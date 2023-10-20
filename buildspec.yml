@@ -6,10 +6,14 @@ phases:
       nodejs: 18
   pre_build:
     commands:
+      - cd my_first_app_angular
+      - echo install node modules
       - npm install
   build:
     commands:
+      - echo Build the project
       - npm run build
+      - echo Finished the build project
   post_build:
     commands:
       - aws s3 sync dist/ s3://applications18-test-angular
