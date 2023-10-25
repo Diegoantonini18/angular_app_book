@@ -1,16 +1,28 @@
 version: 0.2
 
+env:
+  variables:
+    CACHE_CONTROL: "86400"
+    S3_BUCKET: "{{S3_BUCKET}}"
+    BUILD_FOLDER: "dist"
+
 phases:
   install:
     runtime-versions:
       nodejs: 18
-  pre_build:
     commands:
       - cd my_first_app_angular
+      - echo Installing source NPM dependencies...
+      - npm install
+      - npm install -g @angular/cli
+
   build:
     commands:
+      - echo Build started
       - ng build
+
 artifacts:
   files:
     - '**/*'
-  base-directory: dist/my_first_app_angular
+  discard-paths: yes
+  base-directory: 'my_first_app_angular/dist/my_first_app_angular'
